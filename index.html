@@ -826,7 +826,7 @@ function renderInventory() {
       <div class="panel-header">
         <h2 class="panel-title">Inventory Catalogue</h2>
         <div style="font-size:12px;color:var(--muted);letter-spacing:1px;">
-          Showing <strong style="color:var(--ink)">${filtered.length}</strong> of ${ITEMS.length}
+          Showing <strong id="inv-count" style="color:var(--ink)">${filtered.length}</strong> of ${ITEMS.length}
         </div>
       </div>
       <div class="filters">
@@ -850,7 +850,7 @@ function renderInventory() {
           <option value="bulk" ${state.status === 'bulk' ? 'selected' : ''}>Bulk stock</option>
         </select>
       </div>
-      <div class="inv-grid">
+      <div class="inv-grid" id="inv-grid">
         ${filtered.length ? filtered.map(renderInventoryCard).join('')
           : `<div style="grid-column:1/-1;padding:40px;text-align:center;color:var(--muted);">No items match those filters.</div>`}
       </div>
@@ -1007,7 +1007,18 @@ function renderModal(item) {
 
 /* ════════════════ INTERACTIONS ════════════════ */
 function setTab(t) { state.tab = t; render(); }
-function setSearch(v) { state.search = v; renderMainPanel(); }
+function setSearch(v) {
+  state.search = v;
+  // Only update the grid + count — leave the input alone so the cursor stays put
+  const grid = document.getElementById('inv-grid');
+  const count = document.getElementById('inv-count');
+  if (!grid) return;
+  const filtered = filteredItems();
+  if (count) count.textContent = filtered.length;
+  grid.innerHTML = filtered.length
+    ? filtered.map(renderInventoryCard).join('')
+    : `<div style="grid-column:1/-1;padding:40px;text-align:center;color:var(--muted);">No items match those filters.</div>`;
+}
 function setFilter(k, v) { state[k] = v; render(); }
 function openItem(id) { activeModal = ITEMS.find(i => i.id === id); render(); }
 function closeModal() { activeModal = null; render(); }
