@@ -543,6 +543,153 @@
   }
   .btn-ghost:hover { background: var(--white); border-color: var(--teal); }
 
+  /* ─── New Project Modal ───────────────────── */
+  .np-modal {
+    background: var(--cream);
+    border-radius: 18px;
+    max-width: 820px; width: 100%;
+    max-height: 92vh; overflow-y: auto;
+    position: relative;
+  }
+  .np-header {
+    padding: 26px 30px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+    align-items: center;
+    position: sticky; top: 0;
+    background: var(--cream);
+    z-index: 2;
+    border-radius: 18px 18px 0 0;
+  }
+  .np-header-title {
+    font-family: 'Big Shoulders Stencil Display', sans-serif;
+    font-size: 26px; font-weight: 700;
+    color: var(--ink); letter-spacing: 1.5px;
+  }
+  .np-body { padding: 24px 30px; }
+  .np-form-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px;
+    margin-bottom: 24px;
+  }
+  .np-form-grid .np-field-full { grid-column: 1 / -1; }
+  .np-field-label {
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; margin-bottom: 6px;
+  }
+  .np-input {
+    width: 100%; padding: 11px 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px; font-family: inherit;
+    font-size: 14px; color: var(--ink);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .np-input:focus {
+    outline: none; border-color: var(--teal);
+    box-shadow: 0 0 0 3px var(--teal-soft);
+  }
+  .np-section-title {
+    font-family: 'Big Shoulders Stencil Display', sans-serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--ink); letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .np-date-hint {
+    font-size: 11px; color: var(--muted);
+    font-weight: 500; letter-spacing: 0.5px;
+    font-family: 'Figtree', sans-serif; text-transform: none;
+  }
+  .np-date-hint strong { color: var(--teal); }
+  .np-date-hint.warn strong { color: var(--orange); }
+  .np-item-list {
+    max-height: 320px; overflow-y: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--white);
+  }
+  .np-item {
+    display: grid;
+    grid-template-columns: 28px 40px 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-soft);
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .np-item:last-child { border-bottom: none; }
+  .np-item:hover:not(.disabled) { background: var(--cream-light); }
+  .np-item.disabled {
+    opacity: 0.45; cursor: not-allowed;
+    background: var(--cream-light);
+  }
+  .np-item.selected { background: var(--orange-soft); }
+  .np-checkbox {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .np-item.selected .np-checkbox {
+    background: var(--orange); border-color: var(--orange);
+  }
+  .np-item.disabled .np-checkbox { background: var(--cream-dark); }
+  .np-item-swatch {
+    width: 32px; height: 32px; border-radius: 6px;
+    border: 1px solid var(--border-soft);
+  }
+  .np-item-details .np-item-name {
+    font-size: 13px; font-weight: 600; color: var(--ink);
+  }
+  .np-item-details .np-item-meta {
+    font-size: 11px; color: var(--muted); margin-top: 2px;
+  }
+  .np-item-status {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 100px;
+  }
+  .np-item-status.available { background: var(--teal-soft); color: var(--teal); }
+  .np-item-status.busy { background: var(--cream-dark); color: var(--ink-soft); }
+
+  .np-summary {
+    margin-top: 20px; padding: 16px 20px;
+    background: var(--teal);
+    color: var(--cream); border-radius: 12px;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .np-summary-count {
+    font-family: 'Big Shoulders Stencil Display', sans-serif;
+    font-size: 24px; font-weight: 700; letter-spacing: 1px;
+  }
+  .np-summary-value { opacity: 0.85; font-size: 13px; }
+  .np-summary-value strong {
+    font-family: 'Big Shoulders Stencil Display', sans-serif;
+    font-size: 18px; font-weight: 700; letter-spacing: 1px;
+    color: var(--cream);
+  }
+
+  .np-footer {
+    padding: 20px 30px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: flex-end;
+    gap: 10px; flex-wrap: wrap;
+    background: var(--cream);
+    border-radius: 0 0 18px 18px;
+    position: sticky; bottom: 0;
+  }
+
+  @media (max-width: 640px) {
+    .np-form-grid { grid-template-columns: 1fr; }
+    .np-item { grid-template-columns: 24px 32px 1fr; gap: 10px; }
+    .np-item-status { grid-column: 3; margin-top: 4px; justify-self: start; }
+  }
+
   /* ─── CTA / Footer ─────────────────────────── */
   .cta-banner {
     margin-top: 40px; background: var(--ink);
@@ -631,7 +778,7 @@
 <script>
 /* ════════════════ SAMPLE DATA ════════════════ */
 
-const ITEMS = [
+let ITEMS = [
   { id: 'SF-001', name: '3-Seat Velvet Sofa', category: 'Sofa', colour: 'Navy', material: 'Velvet', condition: 'Excellent', status: 'project', projectId: 'P-001', purchased: 'Mar 2024', cost: 1200, swatch: '#1e3a5f' },
   { id: 'SF-002', name: '2-Seat Leather Sofa', category: 'Sofa', colour: 'Tan', material: 'Leather', condition: 'Good', status: 'warehouse', purchased: 'Nov 2023', cost: 950, swatch: '#9c6b43' },
   { id: 'SF-003', name: '2-Seat Sofa (Boucle)', category: 'Sofa', colour: 'Cream', material: 'Boucle', condition: 'Excellent', status: 'project', projectId: 'P-002', purchased: 'Sep 2024', cost: 1100, swatch: '#e8dcc8' },
@@ -654,7 +801,7 @@ const ITEMS = [
   { id: 'BK-002', name: 'Wool Throw Collection', category: 'Soft Furnishings', colour: 'Neutral', material: 'Wool', condition: 'Good', status: 'bulk', purchased: 'Various', cost: 380, swatch: '#c7b79a', qty: 22 },
 ];
 
-const PROJECTS = [
+let PROJECTS = [
   { id: 'P-001', address: 'The Old Mill, Ashbourne', client: 'J. Whitaker', startDate: '2 Feb 2026', endDate: '2 Jun 2026', daysLeft: 42, status: 'extended', itemCount: 38, value: 12400 },
   { id: 'P-002', address: '47 Maple Avenue, Belper', client: 'S. Chen', startDate: '14 Mar 2026', endDate: '15 May 2026', daysLeft: 24, status: 'active', itemCount: 23, value: 6800 },
   { id: 'P-003', address: '12 Station Road, Derby', client: 'P. Stevens', startDate: '1 Apr 2026', endDate: '8 May 2026', daysLeft: 17, status: 'active', itemCount: 17, value: 4200 },
@@ -702,10 +849,51 @@ const ICONS = {
 /* ════════════════ STATE ════════════════ */
 const state = { tab: 'inventory', search: '', category: 'all', colour: 'all', status: 'all' };
 let activeModal = null;
+let newProjectOpen = false;
+let newProjectForm = {
+  client: '',
+  address: '',
+  startDate: '',
+  endDate: '',
+  selectedItems: new Set(),
+};
 
 function findProject(id) { return PROJECTS.find(p => p.id === id); }
 function statusLabel(s) { return { warehouse: 'Available', project: 'On Project', repair: 'In Repair', bulk: 'Bulk Stock' }[s]; }
 function statusClass(s) { return 'status-' + s; }
+
+/* Date helpers (for availability checks) */
+function parseDate(str) {
+  // Accepts "2 Feb 2026" or "2026-02-02" format
+  if (!str) return null;
+  if (str.includes('-')) return new Date(str + 'T00:00:00');
+  const parts = str.split(' ');
+  if (parts.length !== 3) return null;
+  const months = { Jan:0, Feb:1, Mar:2, Apr:3, May:4, Jun:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11 };
+  return new Date(parseInt(parts[2]), months[parts[1]], parseInt(parts[0]));
+}
+function formatDate(d) {
+  if (!d) return '';
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+function dateRangesOverlap(aStart, aEnd, bStart, bEnd) {
+  return aStart <= bEnd && bStart <= aEnd;
+}
+/* Returns true if item is available for the given date range */
+function isItemAvailable(item, newStart, newEnd) {
+  if (item.status === 'bulk') return true;
+  if (item.status === 'repair') return false;
+  if (item.status === 'warehouse') return true;
+  if (item.status === 'project' && item.projectId) {
+    const p = findProject(item.projectId);
+    if (!p) return true;
+    const pStart = parseDate(p.startDate);
+    const pEnd = parseDate(p.endDate);
+    return !dateRangesOverlap(newStart, newEnd, pStart, pEnd);
+  }
+  return false;
+}
 function getContrastColor(hex) {
   const r = parseInt(hex.slice(1,3), 16), g = parseInt(hex.slice(3,5), 16), b = parseInt(hex.slice(5,7), 16);
   return ((r*299 + g*587 + b*114) / 1000) > 140 ? '#1a1a1a' : '#ffffff';
@@ -862,11 +1050,19 @@ function renderProjects() {
     <div class="panel">
       <div class="panel-header">
         <h2 class="panel-title">Live Projects</h2>
-        <div style="font-size:12px;color:var(--muted);letter-spacing:1px;">
-          <strong style="color:var(--teal)">£${PROJECTS.reduce((s,p)=>s+p.value,0).toLocaleString()}</strong> · Total active staging value
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <div style="font-size:12px;color:var(--muted);letter-spacing:1px;">
+            <strong style="color:var(--teal)">£${PROJECTS.reduce((s,p)=>s+p.value,0).toLocaleString()}</strong> · Active staging value
+          </div>
+          <button class="btn btn-primary" style="flex:0 0 auto;min-width:auto;padding:10px 18px;" onclick="openNewProject()">+ New Project</button>
         </div>
       </div>
-      ${PROJECTS.map(p => `
+      ${PROJECTS.length === 0 ? `
+        <div style="padding:60px 20px;text-align:center;color:var(--muted);">
+          <div style="font-size:14px;margin-bottom:16px;">No live projects yet.</div>
+          <button class="btn btn-primary" style="min-width:auto;padding:12px 22px;" onclick="openNewProject()">+ Create your first project</button>
+        </div>
+      ` : PROJECTS.map(p => `
         <div class="project-card">
           <div>
             <div class="project-address">${p.address}</div>
@@ -875,7 +1071,10 @@ function renderProjects() {
           <div><div class="project-col-label">Items</div><div class="project-col-value teal">${p.itemCount}</div></div>
           <div><div class="project-col-label">Value</div><div class="project-col-value">£${p.value.toLocaleString()}</div></div>
           <div><div class="project-col-label">Days Left</div><div class="project-col-value orange">${p.daysLeft}</div></div>
-          <div><span class="project-status-pill pill-${p.status}">${p.status === 'extended' ? 'Extended' : p.status === 'ending' ? 'Ending Soon' : 'Active'}</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+            <span class="project-status-pill pill-${p.status}">${p.status === 'extended' ? 'Extended' : p.status === 'ending' ? 'Ending Soon' : 'Active'}</span>
+            <button class="btn btn-ghost" style="padding:6px 12px;font-size:11px;letter-spacing:1px;" onclick="completeProject('${p.id}')">Complete De-stage</button>
+          </div>
         </div>`).join('')}
     </div>`;
 }
@@ -1005,6 +1204,120 @@ function renderModal(item) {
     </div>`;
 }
 
+function renderNewProjectModal() {
+  if (!newProjectOpen) return '';
+
+  const f = newProjectForm;
+  const startD = parseDate(f.startDate);
+  const endD = parseDate(f.endDate);
+  const datesValid = startD && endD && startD <= endD;
+
+  // Build the item list
+  let itemRows = '';
+  if (!datesValid) {
+    itemRows = `<div style="padding:40px 20px;text-align:center;color:var(--muted);font-size:13px;">Enter valid staging dates above to see available inventory.</div>`;
+  } else {
+    // Sort: available first, then unavailable
+    const sorted = [...ITEMS].sort((a, b) => {
+      const aAvail = isItemAvailable(a, startD, endD);
+      const bAvail = isItemAvailable(b, startD, endD);
+      if (aAvail === bAvail) return 0;
+      return aAvail ? -1 : 1;
+    });
+    itemRows = sorted.map(item => {
+      const available = isItemAvailable(item, startD, endD);
+      const selected = f.selectedItems.has(item.id);
+      let statusHtml = '';
+      if (available) {
+        statusHtml = `<span class="np-item-status available">Available</span>`;
+      } else if (item.status === 'repair') {
+        statusHtml = `<span class="np-item-status busy">In repair</span>`;
+      } else if (item.status === 'project' && item.projectId) {
+        const proj = findProject(item.projectId);
+        statusHtml = `<span class="np-item-status busy">On project · returns ${proj ? proj.endDate.split(' ').slice(0,2).join(' ') : ''}</span>`;
+      } else {
+        statusHtml = `<span class="np-item-status busy">Unavailable</span>`;
+      }
+      return `
+        <div class="np-item ${available ? '' : 'disabled'} ${selected ? 'selected' : ''}"
+             ${available ? `onclick="toggleNewProjectItem('${item.id}')"` : ''}>
+          <div class="np-checkbox">
+            ${selected ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}
+          </div>
+          <div class="np-item-swatch" style="background:${item.swatch};"></div>
+          <div class="np-item-details">
+            <div class="np-item-name">${item.name}</div>
+            <div class="np-item-meta">${item.id} · ${item.colour} · ${item.material}${item.qty ? ` · qty ${item.qty}` : ''}</div>
+          </div>
+          ${statusHtml}
+        </div>`;
+    }).join('');
+  }
+
+  // Selected summary
+  const selectedItems = [...f.selectedItems].map(id => ITEMS.find(i => i.id === id)).filter(Boolean);
+  const selectedValue = selectedItems.reduce((s, i) => s + (i.cost || 0), 0);
+  const availableCount = datesValid
+    ? ITEMS.filter(i => isItemAvailable(i, startD, endD)).length
+    : 0;
+
+  const canSave = datesValid && f.client.trim() && f.address.trim() && f.selectedItems.size > 0;
+
+  return `
+    <div class="modal-overlay active" onclick="if(event.target===this)closeNewProject()">
+      <div class="np-modal">
+        <div class="np-header">
+          <div class="np-header-title">+ New Staging Project</div>
+          <button class="modal-close" onclick="closeNewProject()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="np-body">
+          <div class="np-form-grid">
+            <div>
+              <div class="np-field-label">Client Name</div>
+              <input id="np-client" class="np-input" placeholder="e.g. J. Smith" value="${f.client}" oninput="updateNewProjectField('client', this.value)">
+            </div>
+            <div>
+              <div class="np-field-label">Property Address</div>
+              <input id="np-address" class="np-input" placeholder="e.g. 12 Oak Lane, Sheffield" value="${f.address}" oninput="updateNewProjectField('address', this.value)">
+            </div>
+            <div>
+              <div class="np-field-label">Staging Start</div>
+              <input id="np-start" class="np-input" type="date" value="${f.startDate}" onchange="updateNewProjectField('startDate', this.value)">
+            </div>
+            <div>
+              <div class="np-field-label">De-stage Date</div>
+              <input id="np-end" class="np-input" type="date" value="${f.endDate}" onchange="updateNewProjectField('endDate', this.value)">
+            </div>
+          </div>
+
+          <div class="np-section-title">
+            <span>Select Inventory</span>
+            ${datesValid
+              ? `<span class="np-date-hint"><strong>${availableCount}</strong> items available for ${formatDate(startD)} → ${formatDate(endD)}</span>`
+              : `<span class="np-date-hint warn">Pick dates above to filter availability</span>`}
+          </div>
+          <div class="np-item-list">${itemRows}</div>
+
+          <div class="np-summary">
+            <div>
+              <div class="np-summary-count">${f.selectedItems.size} ${f.selectedItems.size === 1 ? 'item' : 'items'} selected</div>
+              <div class="np-summary-value">Staging value · <strong>£${selectedValue.toLocaleString()}</strong></div>
+            </div>
+            <div style="font-size:11px;opacity:0.8;max-width:260px;text-align:right;">
+              ${f.selectedItems.size === 0 ? 'Click items above to add them to this project' : 'Review your selection, then save below'}
+            </div>
+          </div>
+        </div>
+        <div class="np-footer">
+          <button class="btn btn-ghost" onclick="closeNewProject()">Cancel</button>
+          <button class="btn btn-primary" style="flex:0 0 auto;min-width:auto;opacity:${canSave ? 1 : 0.45};pointer-events:${canSave ? 'auto' : 'none'};" onclick="saveNewProject()">Create Project</button>
+        </div>
+      </div>
+    </div>`;
+}
+
 /* ════════════════ INTERACTIONS ════════════════ */
 function setTab(t) { state.tab = t; render(); }
 function setSearch(v) {
@@ -1022,6 +1335,120 @@ function setSearch(v) {
 function setFilter(k, v) { state[k] = v; render(); }
 function openItem(id) { activeModal = ITEMS.find(i => i.id === id); render(); }
 function closeModal() { activeModal = null; render(); }
+
+/* ─── New Project flow ─── */
+function openNewProject() {
+  // Default dates: today → 8 weeks from today
+  const today = new Date();
+  const eightWeeks = new Date(today.getTime() + 56 * 24 * 60 * 60 * 1000);
+  const iso = (d) => d.toISOString().slice(0, 10);
+  newProjectForm = {
+    client: '',
+    address: '',
+    startDate: iso(today),
+    endDate: iso(eightWeeks),
+    selectedItems: new Set(),
+  };
+  newProjectOpen = true;
+  render();
+}
+function closeNewProject() {
+  newProjectOpen = false;
+  render();
+}
+function updateNewProjectField(field, value) {
+  newProjectForm[field] = value;
+  // If dates changed, drop any selections that are no longer valid
+  if (field === 'startDate' || field === 'endDate') {
+    const s = parseDate(newProjectForm.startDate);
+    const e = parseDate(newProjectForm.endDate);
+    if (s && e && s <= e) {
+      const stillValid = new Set();
+      newProjectForm.selectedItems.forEach(id => {
+        const item = ITEMS.find(i => i.id === id);
+        if (item && isItemAvailable(item, s, e)) stillValid.add(id);
+      });
+      newProjectForm.selectedItems = stillValid;
+    }
+  }
+  // Re-render only the modal (keep input focus) — full render on date change is fine since those use onchange not oninput
+  if (field === 'client' || field === 'address') {
+    // Rerender just the modal without stealing focus
+    const overlay = document.querySelector('.modal-overlay');
+    if (overlay) {
+      const active = document.activeElement;
+      const activeId = active ? active.id : null;
+      const cursorPos = active && active.selectionStart !== undefined ? active.selectionStart : null;
+      overlay.outerHTML = renderNewProjectModal();
+      if (activeId) {
+        const restored = document.getElementById(activeId);
+        if (restored) {
+          restored.focus();
+          if (cursorPos !== null) restored.setSelectionRange(cursorPos, cursorPos);
+        }
+      }
+    }
+  } else {
+    render();
+  }
+}
+function toggleNewProjectItem(id) {
+  if (newProjectForm.selectedItems.has(id)) {
+    newProjectForm.selectedItems.delete(id);
+  } else {
+    newProjectForm.selectedItems.add(id);
+  }
+  render();
+}
+function saveNewProject() {
+  const f = newProjectForm;
+  const startD = parseDate(f.startDate);
+  const endD = parseDate(f.endDate);
+  if (!startD || !endD || !f.client.trim() || !f.address.trim() || f.selectedItems.size === 0) return;
+
+  const selectedItems = [...f.selectedItems].map(id => ITEMS.find(i => i.id === id)).filter(Boolean);
+  const projectValue = selectedItems.reduce((s, i) => s + (i.cost || 0), 0);
+  const today = new Date();
+  const daysLeft = Math.max(0, Math.round((endD - today) / (1000 * 60 * 60 * 24)));
+
+  const newId = 'P-' + String(PROJECTS.length + 100 + Math.floor(Math.random() * 99)).padStart(3, '0');
+
+  const newProject = {
+    id: newId,
+    address: f.address,
+    client: f.client,
+    startDate: formatDate(startD),
+    endDate: formatDate(endD),
+    daysLeft,
+    status: daysLeft < 14 ? 'ending' : 'active',
+    itemCount: selectedItems.length,
+    value: projectValue,
+  };
+
+  PROJECTS = [newProject, ...PROJECTS];
+
+  // Flip items to "on project"
+  ITEMS = ITEMS.map(item => {
+    if (f.selectedItems.has(item.id) && item.status !== 'bulk') {
+      return { ...item, status: 'project', projectId: newId };
+    }
+    return item;
+  });
+
+  newProjectOpen = false;
+  render();
+}
+function completeProject(projectId) {
+  // Return items to warehouse, remove project from list
+  ITEMS = ITEMS.map(item => {
+    if (item.projectId === projectId && item.status === 'project') {
+      return { ...item, status: 'warehouse', projectId: undefined };
+    }
+    return item;
+  });
+  PROJECTS = PROJECTS.filter(p => p.id !== projectId);
+  render();
+}
 
 function renderMainPanel() {
   const main = document.getElementById('main-panel');
@@ -1046,7 +1473,8 @@ function render() {
       </div>
       ${renderCTA()}
     </div>
-    ${renderModal(activeModal)}`;
+    ${renderModal(activeModal)}
+    ${renderNewProjectModal()}`;
 
   // After render, restore search value if we're on the inventory tab
   if (state.tab === 'inventory') {
